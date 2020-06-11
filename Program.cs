@@ -7,9 +7,15 @@ namespace ExquisiteCorpse
     static void Main(string[] args)
     {
 
+      // Test RandomMode()
+      RandomMode();
+
+      // Test out SwitchCase()
+      //SwitchCase(1, 1, 1);
+
       // Test out BuildACreature() manually
-      BuildACreature("monster", "ghost", "monster");
-      BuildACreature("bug", "ghost", "monster");
+      //BuildACreature("monster", "ghost", "monster");
+      //BuildACreature("bug", "ghost", "monster");
 
       // Test out the functions MonsterHead(), GhostBody(), BugFeet() individually
       //MonsterHead();
@@ -22,49 +28,15 @@ namespace ExquisiteCorpse
     static void BuildACreature(
       string head,
       string body,
-      string feet) {
+      string feet)
+    {
+      int headNum = TranslateToNumber(head);
+      int bodyNum = TranslateToNumber(body);
+      int feetNum = TranslateToNumber(feet);
 
-      // parameter value head
-      switch (head)
-      {
-        case "ghost":
-          GhostHead();
-          break;
-        case "bug":
-          BugHead();
-          break;
-        case "monster":
-          MonsterHead();
-          break;
-      }
+      // call SwitchCase() with above as args
+      SwitchCase(headNum, bodyNum, feetNum);
 
-      // parameter value body
-      switch (body)
-      {
-        case "ghost":
-          GhostBody();
-          break;
-        case "bug":
-          BugBody();
-          break;
-        case "monster":
-          MonsterBody();
-          break;
-      }
-
-      // parameter value feet
-      switch (feet)
-      {
-        case "ghost":
-          GhostFeet();
-          break;
-        case "bug":
-          BugFeet();
-          break;
-        case "monster":
-          MonsterFeet();
-          break;
-      }
     }
 
 
@@ -79,7 +51,11 @@ namespace ExquisiteCorpse
       int body = randomNumber.Next(1, 4);
       int feet = randomNumber.Next(1, 4);
 
+      // Call SwitchCase() with above variables passed in
+      SwitchCase(head, body, feet);
+
     }
+
 
     // SwitchStatement Custom Method to Refractor
     static void SwitchCase(
@@ -125,12 +101,27 @@ namespace ExquisiteCorpse
           MonsterFeet();
           break;
       }
-
-
     }
 
 
+    // Translate the meaning of string data into int
+    static int TranslateToNumber(string creature)
+    {
+      switch (creature)
+      {
+        case "ghost":
+          return 1;
+        case "bug":
+          return 2;
+        case "monster":
+          return 3;
+        default:
+          return 1;
+      }
+    }
 
+
+// The code for creating each body part of the creature
 
     static void GhostHead()
     {
